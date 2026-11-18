@@ -1,4 +1,6 @@
-export const prompts= require('prompt-sync')();  
+import promptSync from "prompt-sync";
+
+export const prompts = promptSync();
 
 export const serviciosHistoricos = new Map([
     ["AD123", {
@@ -243,5 +245,4 @@ export const tipoServicio = new Map([
         Precio_Serv: 40000
     }]
 ]); 
-
 
