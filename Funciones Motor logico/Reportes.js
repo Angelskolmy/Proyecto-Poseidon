@@ -18,6 +18,54 @@ export function promedio(datos) {
     return totalGeneral(datos) / datos.size;
 }
 
+//Recurrentes lentos
+export function recurrentesLento(datos) {
+    const recurrentes = new Set();
+
+    for (const servicio of datos.values()) {
+        let apariciones = 0;
+
+        for (const otroServicio of datos.values()) {
+            if (otroServicio.ID_Vehiculo === servicio.ID_Vehiculo) {
+                apariciones++;
+            }
+        }
+
+        if (apariciones > 1) {
+            recurrentes.add(servicio.ID_Vehiculo);
+        }
+    }
+
+    return [...recurrentes];
+}
+
+
+//Recurrentes rapidos
+
+export function recurrentesRapido(datos) {
+    const aparicionesPorVehiculo = new Map();
+
+    for (const servicio of datos.values()) {
+        const idVehiculo = servicio.ID_Vehiculo;
+        const apariciones = aparicionesPorVehiculo.get(idVehiculo) ?? 0;
+        aparicionesPorVehiculo.set(idVehiculo, apariciones + 1);
+    }
+
+    const recurrentes = [];
+
+    for (const [idVehiculo, apariciones] of aparicionesPorVehiculo) {
+        if (apariciones > 1) {
+            recurrentes.push(idVehiculo);
+        }
+    }
+
+    return recurrentes;
+}
+
 // Pruebas
 console.log(`Promedio: ${promedio(serviciosHistoricos)}`);
 console.log(`Promedio sin servicios: ${promedio(new Map())}`);
+console.log(`Recurrentes lento: ${JSON.stringify(recurrentesLento(serviciosHistoricos))}`);
+console.log(`Recurrentes rápido: ${JSON.stringify(recurrentesRapido(serviciosHistoricos))}`);
+console.log(`Recurrentes lento sin servicios: ${JSON.stringify(recurrentesLento(new Map()))}`);
+console.log(`Recurrentes rápido sin servicios: ${JSON.stringify(recurrentesRapido(new Map()))}`);
