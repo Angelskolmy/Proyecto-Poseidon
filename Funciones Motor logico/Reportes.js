@@ -29,3 +29,21 @@ const resultado = totalGeneral(serviciosHistoricos);
 // Mostramos el resultado
 console.log("El total general es:", resultado);
 console.log("El total general es:", resultado);
+
+
+//------------------ NIVEL 2 · Datos ----------
+import { vehiculos } from "./Db._dicionarios.js";
+
+export function personasUnicas(datos) {
+    const personas = new Set();
+
+    for (const vehiculo of datos.values()) {
+        personas.add(vehiculo.Numero_Tel);
+    }
+
+    return personas.size;
+}
+
+const resultadoPersonas = personasUnicas(vehiculos);
+
+console.log("Personas diferentes:", resultadoPersonas);
