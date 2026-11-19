@@ -1,14 +1,23 @@
 import { serviciosHistoricos } from "./Db._dicionarios.js";
 
+export function totalGeneral(datos) {
+    let total = 0;
+
+    for (const servicio of datos.values()) {
+        total += servicio.Monto;
+    }
+
+    return total;
+}
+
 export function promedio(datos) {
-    if (datos.length === 0) {
+    if (datos.size === 0) {
         return 0;
     }
 
-    const total = datos.reduce((acumulado, registro) => acumulado + registro.Monto, 0);
-    return total / datos.length;
+    return totalGeneral(datos) / datos.size;
 }
 
 // Pruebas
-console.log(promedio([...serviciosHistoricos.values()]));
-console.log(promedio([]));
+console.log(`Promedio: ${promedio(serviciosHistoricos)}`);
+console.log(`Promedio sin servicios: ${promedio(new Map())}`);
