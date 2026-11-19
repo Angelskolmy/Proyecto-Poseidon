@@ -245,5 +245,3 @@ export const tipoServicio = new Map([
         Precio_Serv: 40000
     }]
 ]); 
-
-

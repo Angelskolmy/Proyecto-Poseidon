@@ -43,7 +43,3 @@ export function personasUnicas(datos) {
 
     return personas.size;
 }
-
-const resultadoPersonas = personasUnicas(vehiculos);
-
-console.log("Personas diferentes:", resultadoPersonas);
