@@ -43,3 +43,6 @@ export function personasUnicas(datos) {
 
     return personas.size;
 }
+
+const cantidadPersonasUnicas = personasUnicas(vehiculos);
+console.log("Cantidad de personas únicas:", cantidadPersonasUnicas);
