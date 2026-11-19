@@ -1,4 +1,6 @@
-export const prompts= require('prompt-sync')();  
+//export const prompts= require('prompt-sync')();  
+import promptSync from 'prompt-sync'; //Si se está usando ES Modules (import y export) usar require  
+export const prompts = promptSync(); //genera conflicto en las importaciones de los modulos, por tal razon se deja comentado y se importa con el método ES Modules.
 
 export const serviciosHistoricos = new Map([
     ["AD123", {
