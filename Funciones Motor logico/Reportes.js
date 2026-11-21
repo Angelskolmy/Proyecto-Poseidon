@@ -2,6 +2,7 @@ import {
     serviciosHistoricos,
     vehiculos,
     tipoServicio,
+    prompts,
 
 } from "./Db._dicionarios.js";
 
@@ -12,6 +13,7 @@ let lista_registros = listarTodo(serviciosHistoricos);
 // ---------- NIVEL 1 · Datos ----------
 function mostrarRegistro(registro) {
     //Juan-cuartas
+    console.log("||---------------- Tabla: Lista de registros ----------------||")
     return console.table(registro);
 }
 
@@ -31,7 +33,6 @@ export function totalGeneral(datos) {
     for (const servicio of datos.values()) {
         total += servicio.Monto;
     }
-
     return total;
 }
 
@@ -46,7 +47,7 @@ export function promedio(datos) {
             ]
         );
     };
-
+    console.log("||---------------- Tabla: Promedio ----------------||")
     return new Map(
         [
             ["Promedio", Math.round(promedio)]
@@ -66,6 +67,7 @@ function registroMayor(datos) {
             tableMayormonto = registros[i];
         }
     }
+    console.log("||---------------- Tabla: Registro mayor ----------------||")
     return tableMayormonto;
 }
 
@@ -99,7 +101,7 @@ function totalesPorCategoria(datos) {
             categorias.set("Encerado", categorias.get("Encerado") + registros[i].Monto)
         };
     }
-
+    console.log("||---------------- Tabla: Total por categoria ----------------||")
     return categorias;
 }
 
@@ -111,10 +113,10 @@ export function personasUnicas(datos) {
     for (const vehiculo of datos.values()) {
         personas.add(vehiculo.Numero_Tel);
     }
-
+    console.log("||---------------- Tabla: Personas únicas ----------------||")
     return new Map(
         [
-            ["Personas difirentes", personas.size]
+            ["Personas", personas.size]
         ]
     );
 }
@@ -137,7 +139,7 @@ export function recurrentesLento(datos) {
             recurrentes.add(servicio.ID_Vehiculo);
         }
     }
-
+    console.log("||---------------- Tabla: Recurrentes Lento ----------------||")
     return [...recurrentes];
 }
 
@@ -160,7 +162,7 @@ export function recurrentesRapido(datos) {
             recurrentes.push(idVehiculo);
         }
     }
-
+        console.log("||---------------- Tabla: Recurrentes Rápido ----------------||")
     return recurrentes;
 }
 
@@ -170,7 +172,12 @@ function categoriaEstrella(datos) {
 
 function parQueSuma(datos, objetivo) {
     //Juan-cuartas
-    let valorObjetivo = objetivo;
+    if (objetivo === null || objetivo === undefined) {
+        console.log("Faltó asignar el segundo parametro directamente en la función parQueSuma(datos, objetivo)")
+        console.log("A continuación asignelo desde la consola...")
+        objetivo = Number(prompts("Ingrese un valor para filtrar dos registros correspondientes: "))
+    }
+
     let registros = datos;
     let parSumado = new Map(
         [
@@ -181,7 +188,7 @@ function parQueSuma(datos, objetivo) {
     //console.log(parSumado);
     for (const registro of registros) {
         //console.log(registro.Monto);
-        if (registro.Monto === valorObjetivo) {
+        if (registro.Monto === objetivo) {
             if (parSumado.get("Registro_1") === null) {
                 parSumado.set("Registro_1", registro);
             } else {
@@ -189,6 +196,7 @@ function parQueSuma(datos, objetivo) {
             }
         }
     }
+        console.log("||---------------- Tabla: Pares que suman lo mismo ----------------||")
     return [...parSumado.values()];
 }
 // ---------- NIVEL 4 · Cola y pila ----------
@@ -199,33 +207,45 @@ function parQueSuma(datos, objetivo) {
 
 
 // ---------- Zona de pruebas ----------
+console.log ("")
+console.log ("||-----------------------------------||")
+console.log ("||Pruebas de error con registros...  ||")
+console.log ("||-----------------------------------||")
+console.log ("")
 //Funciones: Juan Cuartas
 mostrarRegistro(lista_registros);
 console.table(registroMayor(lista_registros));
 console.table(totalesPorCategoria(lista_registros));
 console.table(parQueSuma(lista_registros, 40000));
 
-mostrarRegistro(new Set()); //Prueba array vacio, funcional.
-console.table(registroMayor(new Set())); //Prueba con array vacío, funcional devuelve null.
-console.table(totalesPorCategoria(new Set())); //Prueba con array vacío, funcional.
-console.table(parQueSuma(lista_registros, 0)); //Devuelve null o los dos valores, funcional.
-
 //Funciones: Jhoimar
 console.table(promedio(serviciosHistoricos));
 console.table(recurrentesLento(serviciosHistoricos));
 console.table(recurrentesRapido(serviciosHistoricos));
 
+
+//Funciones: Lauren
+console.log("||---------------- Tabla: Total General ----------------||")
+console.table({ "Total general": totalGeneral(serviciosHistoricos) });
+console.table(personasUnicas(vehiculos));
+
+//Funciones: Angel - Pendiente.
+
+// __________________Pruebas con Arrays vacíos_____________________________//
+console.log ("")
+console.log ("||-----------------------------------||")
+console.log ("||Pruebas de error con arrays vacíos.||")
+console.log ("||-----------------------------------||")
+console.log ("")
+mostrarRegistro(new Set()); //Prueba array vacio, funcional.
+console.table(registroMayor(new Set())); //Prueba con array vacío, funcional devuelve null.
+console.table(totalesPorCategoria(new Set())); //Prueba con array vacío, funcional.
+console.table(parQueSuma(lista_registros,)); //Devuelve null o los dos valores, funcional.
+console.table(parQueSuma(new Set(), 40000)); //Devuelve null o los dos valores, funcional.
+
 console.table(promedio(new Set())); //Prueba con array vacío, funcional.
 console.table(recurrentesLento(new Set())); //Prueba con array vacío, funcional.
 console.table(recurrentesRapido(new Set())); //Prueba con array vacío, funcional.
 
-
-//Funciones: Lauren
-console.table({"Total general": totalGeneral(serviciosHistoricos)});
-console.table(personasUnicas(vehiculos));
-
 console.table(totalGeneral(new Set())); // Prueba con array vacío, funcional.
 console.table(personasUnicas(new Set())); // Prueba con array vacio, funcional.
-
-
-//Funciones: Angel - Pendiente.
