@@ -76,3 +76,8 @@ console.log(`Recurrentes lento: ${JSON.stringify(recurrentesLento(serviciosHisto
 console.log(`Recurrentes rápido: ${JSON.stringify(recurrentesRapido(serviciosHistoricos))}`);
 console.log(`Recurrentes lento sin servicios: ${JSON.stringify(recurrentesLento(new Map()))}`);
 console.log(`Recurrentes rápido sin servicios: ${JSON.stringify(recurrentesRapido(new Map()))}`);
+
+const pilaRegistros = [{ estado: "Estado anterior" }];
+const nuevoRegistro = { estado: "Nuevo estado" };
+console.log(`Pila después de agregar el registro: ${JSON.stringify(agregarRegistro(pilaRegistros, nuevoRegistro))}`);
+console.log(`Registro en la cima: ${JSON.stringify(pilaRegistros[pilaRegistros.length - 1])}`);
