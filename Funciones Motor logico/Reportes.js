@@ -62,6 +62,13 @@ export function recurrentesRapido(datos) {
     return recurrentes;
 }
 
+
+export function agregarRegistro(datos, registro) {
+    datos.push(registro);
+    return datos;
+}
+
+
 // Pruebas
 console.log(`Promedio: ${promedio(serviciosHistoricos)}`);
 console.log(`Promedio sin servicios: ${promedio(new Map())}`);
