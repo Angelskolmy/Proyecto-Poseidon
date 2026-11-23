@@ -18,7 +18,8 @@ import {
     personasUnicas,
     recurrentesLento,
     recurrentesRapido,
-    parQueSuma
+    parQueSuma, 
+    DelLastPrint
 } from "./AnalisisSetMap.js"
 
 let lista_registros = listarTodo(serviciosHistoricos);
@@ -33,7 +34,9 @@ while (true) {
         { Columna_1: "-3 Mostrar lista", Columna_2: "-9 Recurrentes lentos" },
         { Columna_1: "-4 Total general", Columna_2: "-10 Recurrentes rápidos" },
         { Columna_1: "-5 Promedio general", Columna_2: "-11 Pares de mismo valor" },
-        { Columna_1: "-6 Registro mayor", Columna_2: "-0 Cerrar programa" }
+        { Columna_1: "-6 Registro mayor", Columna_2: "-0 Cerrar programa" }, 
+        {Columna_1: "-12 Eliminar ultimo registro"}
+
     ]);
 
 
@@ -43,7 +46,7 @@ while (true) {
 
         opMotorLogico = Number(prompts("Ingrese numero de opcion deseada "))
 
-        if (opMotorLogico < 0 || opMotorLogico > 11 || !Number.isInteger(opMotorLogico)) {
+        if (opMotorLogico < 0 || opMotorLogico > 12 || !Number.isInteger(opMotorLogico)) {
             console.log("opcion inexistente")
             continue
         }
@@ -101,6 +104,11 @@ while (true) {
 
     else if (opMotorLogico == 11) {
         console.table(parQueSuma(lista_registros));
+        continue
+    } 
+
+     else if (opMotorLogico == 12) {
+        DelLastPrint()
         continue
     }
 
