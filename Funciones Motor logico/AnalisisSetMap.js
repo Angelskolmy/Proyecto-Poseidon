@@ -43,11 +43,8 @@ export function promedio(datos) {
         );
     };
     console.log("||---------------- Tabla: Promedio ----------------||")
-    return new Map(
-        [
-            ["Promedio", Math.round(promedio)]
-        ]
-    );
+
+    return {"Promedio": Math.round(promedio)};
 }
 
 export function registroMayor(datos) {
@@ -323,3 +320,4 @@ export function parQueSuma(datos, objetivo) {
         console.log("||---------------- Tabla: Pares que suman lo mismo ----------------||")
     return [...parSumado.values()];
 }
+
