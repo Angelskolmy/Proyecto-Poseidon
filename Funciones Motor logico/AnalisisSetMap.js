@@ -321,6 +321,14 @@ export function parQueSuma(datos, objetivo) {
     return [...parSumado.values()];
 } 
 
+
+// ---------- NIVEL 4 · PILA & COLA ----------
+export function agregarRegistro(datos, registro) {
+    //By Jhoimar
+    datos.push(registro);
+    return datos;
+}
+
 export function DelLastPrint(){  
     //By Angel
 
