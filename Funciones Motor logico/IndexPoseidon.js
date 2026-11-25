@@ -20,13 +20,17 @@ import {
     recurrentesRapido,
     parQueSuma,
     DelLastPrint,
-    agregarRegistro
+    agregarRegistro,
+    llegar,
+    atender,
+    mostrarCola
 } from "./AnalisisSetMap.js"
 
 let lista_registros = listarTodo(serviciosHistoricos);
 
 const pilaRegistros = [{ estado: "Estado anterior" }];
 const nuevoRegistro = { estado: "Nuevo estado" };
+
 
 while (true) {
     console.log("Seleccione una de las opciones: ")
@@ -48,7 +52,7 @@ while (true) {
 
         opMotorLogico = Number(prompts("Ingrese numero de opcion deseada "))
 
-        if (opMotorLogico < 0 || opMotorLogico > 13 || !Number.isInteger(opMotorLogico)) {
+        if (opMotorLogico < 0 || opMotorLogico > 15 || !Number.isInteger(opMotorLogico)) {
             console.log("opcion inexistente")
             continue
         }
@@ -121,10 +125,13 @@ while (true) {
         continue
     }
     else if (opMotorLogico == 14) {
+        llegar("ABC123", 1);
+        mostrarCola();
         continue
     }
     else if (opMotorLogico == 15) {
-        continue
+        atender();
+        mostrarCola();
     }
 
     else if (opMotorLogico == 0) {

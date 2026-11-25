@@ -1,11 +1,12 @@
 import {
     serviciosHistoricos,
     tipoServicio,
-    prompts
+    prompts,
+    vehiculos
 
 } from "./Db._dicionarios.js";
 
-
+const colaDeAtencion = [];
 
 // ---------- NIVEL 1 · Datos ----------
 export function mostrarRegistro(registro) {
@@ -323,6 +324,64 @@ export function parQueSuma(datos, objetivo) {
 
 
 // ---------- NIVEL 4 · PILA & COLA ----------
+// FUNCIÓN PARA RECIBIR UN VEHÍCULO
+export function llegar(ID_Vehiculo, ID_TipoServicio) {
+    //By Lauren
+  // Buscamos el vehículo en nuestro motor de datos
+  const vehiculo = vehiculos.get(ID_Vehiculo);
+
+  // Buscamos el tipo de servicio
+  const servicio = tipoServicio.get(ID_TipoServicio);
+
+  // Revisamos que los datos existan
+  if (!vehiculo || !servicio) {
+    console.log("Vehículo o servicio no encontrado");
+    return;
+  }
+
+  // Creamos la información de la atención
+  const nuevaAtencion = {
+    ID_Vehiculo: ID_Vehiculo,
+    ID_TipoServicio: ID_TipoServicio,
+    Tipo: vehiculo.Tipo,
+    Servicio: servicio.Tipo_Serv,
+    Monto: servicio.Precio_Serv,
+  };
+
+  // Agregamos el vehículo al final de la fila
+  colaDeAtencion.push(nuevaAtencion);
+
+  console.table({"Vehículo agregado a la cola": nuevaAtencion});
+}
+
+// FUNCIÓN PARA ATENDER UN VEHÍCULO
+export function atender() {
+    //By Lauren
+  // Sacamos al primer vehículo de la fila
+  const atencion = colaDeAtencion.shift();
+
+  // Revisamos si hay vehículos esperando
+  if (!atencion) {
+    console.log("No hay vehículos en espera");
+    return;
+  }
+
+  console.table({"Atendiendo vehículo": atencion});
+
+  return atencion;
+}
+
+// FUNCIÓN PARA MOSTRAR LA COLA
+export function mostrarCola() {
+    //By Lauren - Juan
+    //console.log("Vehículos esperando:", colaDeAtencion);
+  console.table(listarTodo(colaDeAtencion)); 
+  //Esta funcion de readaptó por completo usando el metodo listar
+  //Que se creó al principió para poder ir imprimiendo la lista cada que 
+  //Se agrega un registro nuevo a la cola y lo mismo para cuando se elimina.
+}
+
+
 export function agregarRegistro(datos, registro) {
     //By Jhoimar
     datos.push(registro);
