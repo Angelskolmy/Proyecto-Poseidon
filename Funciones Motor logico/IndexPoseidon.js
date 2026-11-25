@@ -120,6 +120,12 @@ while (true) {
         console.table(agregarRegistro(pilaRegistros, nuevoRegistro));
         continue
     }
+    else if (opMotorLogico == 14) {
+        continue
+    }
+    else if (opMotorLogico == 15) {
+        continue
+    }
 
     else if (opMotorLogico == 0) {
         break
