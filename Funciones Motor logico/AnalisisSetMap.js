@@ -319,5 +319,36 @@ export function parQueSuma(datos, objetivo) {
     }
         console.log("||---------------- Tabla: Pares que suman lo mismo ----------------||")
     return [...parSumado.values()];
-}
+} 
 
+export function DelLastPrint(){  
+
+    let Reflex= new Map()
+
+    let cluster= Array.from(serviciosHistoricos.values())  
+
+    let indic= cluster.length -1 
+    
+    let locFite= cluster.filter((Record, ragnar)=> ragnar == indic)   
+
+    Reflex.set(indic,{ 
+        
+        ID_Vehiculo: locFite[0].ID_Vehiculo, 
+        ID_TipoServicio: locFite[0].ID_TipoServicio, 
+        Fecha: locFite[0].Fecha, 
+        Observaciones: locFite[0].Observaciones, 
+        Monto:locFite[0].Monto
+
+    }) 
+
+    let irmm= Array.from(Reflex,([darius, draven]) => ({
+
+        Ireges:darius, 
+        ...draven
+    }))
+
+    console.table(irmm)
+
+    serviciosHistoricos.delete(indic)
+
+}
