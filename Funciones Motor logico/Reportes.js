@@ -24,6 +24,12 @@ import {
 let lista_registros = listarTodo(serviciosHistoricos);
 
 
+export function agregarRegistro(datos, registro) {
+    //By Jhoimar
+    datos.push(registro);
+    return datos;
+}
+
 // ---------- Zona de pruebas ----------
 console.log ("")
 console.log ("||-----------------------------------||")
