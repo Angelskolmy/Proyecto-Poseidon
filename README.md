@@ -35,6 +35,38 @@ El proyecto busca fortalecer los fundamentos de JavaScript, el razonamiento lóg
 | `agregarRegistro` | O(1) | Agrega un registro al final del array mediante `push()` (complejidad amortizada). |
 | `DelLastPrint` | O(n) | Convierte los servicios históricos en un array y utiliza `filter()` para localizar el último registro. |
 
+## Comparación de eficiencia: Recurrentes lentos vs. rápidos
+
+Se implementaron dos soluciones para identificar los vehículos que aparecen más de una vez en los servicios históricos.
+
+### Análisis de operaciones con 36 registros
+
+| Característica | `recurrentesLento` | `recurrentesRapido` |
+| --- | ---: | ---: |
+| Complejidad temporal | O(n²) | O(n) |
+| Primer recorrido | 36 iteraciones | 36 iteraciones |
+| Segundo recorrido | 1.296 iteraciones | Entre 1 y 36 iteraciones |
+| Total de iteraciones principales | 1.296 internas + 36 externas | Entre 37 y 72 |
+| Comparaciones de identificadores | 1.296 | 36 durante el conteo |
+
+### ¿Por qué existe esta diferencia?
+
+**`recurrentesLento` — O(n²)**
+
+Por cada servicio realiza un nuevo recorrido sobre todos los servicios históricos para contar cuántas veces aparece el identificador del vehículo. Esto genera recorridos anidados.
+
+**`recurrentesRapido` — O(n)**
+
+Utiliza un `Map` para almacenar el número de apariciones de cada vehículo. Primero recorre los servicios para construir el conteo y después recorre las claves almacenadas para identificar los vehículos recurrentes.
+
+### Conclusión
+
+Con 36 registros, `recurrentesLento` realiza 1.296 comparaciones de identificadores, mientras que `recurrentesRapido` realiza 36 comparaciones durante el conteo y entre 1 y 36 iteraciones adicionales para identificar los vehículos recurrentes.
+
+La segunda solución reduce considerablemente el trabajo gracias al uso de un `Map`, cuyas operaciones de consulta y actualización tienen un costo promedio O(1).
+
+**Aprendizaje:** elegir una estructura de datos adecuada permite mejorar significativamente la eficiencia de un algoritmo.
+
 ## Funcionalidades
 
 ### Nivel 1 — Datos
