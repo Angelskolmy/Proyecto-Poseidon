@@ -35,15 +35,16 @@ const nuevoRegistro = { estado: "Nuevo estado" };
 while (true) {
     console.log("Seleccione una de las opciones: ")
     console.table([
-        { Columna_1: "-1 Filtro por categoria", Columna_2: "-7 Total por categoría" },
-        { Columna_1: "-2 Categoria con mas venta", Columna_2: "-8 Personas únicas" },
-        { Columna_1: "-3 Mostrar lista", Columna_2: "-9 Recurrentes lentos" },
-        { Columna_1: "-4 Total general", Columna_2: "-10 Recurrentes rápidos" },
-        { Columna_1: "-5 Promedio general", Columna_2: "-11 Pares de mismo valor" },
-        { Columna_1: "-6 Registro mayor", Columna_2: "-0 Cerrar programa" },
-        { Columna_1: "-12 Eliminar ultimo registro (PILA)", Columna_2: "-13 Agregar registro (PILA)" }
-
+        { Columna_1: "-0 Cerrar programa", Columna_2: "-8 Personas únicas" },
+        { Columna_1: "-1 Filtro por categoría", Columna_2: "-9 Recurrentes lentos" },
+        { Columna_1: "-2 Categoría con más venta", Columna_2: "-10 Recurrentes rápidos" },
+        { Columna_1: "-3 Mostrar lista", Columna_2: "-11 Pares de mismo valor" },
+        { Columna_1: "-4 Total general", Columna_2: "-12 Eliminar registro (PILA)" },
+        { Columna_1: "-5 Promedio general", Columna_2: "-13 Agregar registro (PILA)" },
+        { Columna_1: "-6 Registro mayor", Columna_2: "-14 Agregar registro (COLA)" },
+        { Columna_1: "-7 Total por categoría", Columna_2: "-15 Eliminar registro (COLA)" }
     ]);
+
 
 
     let opMotorLogico
@@ -126,6 +127,9 @@ while (true) {
     }
     else if (opMotorLogico == 14) {
         llegar("ABC123", 1);
+        llegar("XYZ789", 2);
+        llegar("DEF456", 3);
+
         mostrarCola();
         continue
     }
