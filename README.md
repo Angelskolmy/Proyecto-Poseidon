@@ -12,6 +12,28 @@ El programa almacena registros de lavados y permite consultar información, gene
 
 El proyecto busca fortalecer los fundamentos de JavaScript, el razonamiento lógico y la comprensión de estructuras de datos y complejidad algorítmica.
 
+## Análisis de complejidad (Big O)
+
+| Función | Big O | Por qué |
+| --- | --- | --- |
+| `mostrarRegistro` | O(n) | Muestra todos los registros recibidos mediante `console.table`. |
+| `listarTodo` | O(n) | Recorre los valores de la estructura y crea una copia en un nuevo array. |
+| `totalGeneral` | O(n) | Recorre todos los servicios una sola vez para acumular sus montos. |
+| `promedio` | O(n) | Ejecuta `totalGeneral`, que recorre todos los registros; el cálculo posterior es constante. |
+| `registroMayor` | O(n) | Recorre los registros una vez para encontrar el monto más alto. |
+| `filtrarXdatos` | O(c + n) | Recorre los tipos de servicio y los servicios históricos para construir y mostrar el resultado filtrado. |
+| `totalesPorCategoria` | O(n) | Recorre todos los registros y acumula los montos según su categoría. |
+| `personasUnicas` | O(n) | Recorre los vehículos y agrega sus teléfonos a un `Set` para evitar duplicados. |
+| `recurrentesLento` | O(n²) | Por cada servicio vuelve a recorrer todos los servicios para contar las apariciones de cada vehículo. |
+| `recurrentesRapido` | O(n) | Realiza un recorrido para contar las apariciones con un `Map` y otro para identificar los vehículos recurrentes. |
+| `categoriaEstrella` | O(c × n) | Por cada categoría recorre todos los servicios históricos para contar sus registros. |
+| `parQueSuma` | O(n) | Recorre todos los registros una sola vez para encontrar aquellos cuyo monto coincide con el objetivo. |
+| `llegar` | O(1) | Realiza búsquedas por clave en `Map` y agrega una atención al final de la cola. |
+| `atender` | O(n) | Utiliza `shift()` para retirar el primer elemento de la cola, lo que requiere desplazar los elementos restantes. |
+| `mostrarCola` | O(n) | Obtiene y muestra todos los elementos de la cola. |
+| `agregarRegistro` | O(1) | Agrega un registro al final del array mediante `push()` (complejidad amortizada). |
+| `DelLastPrint` | O(n) | Convierte los servicios históricos en un array y utiliza `filter()` para localizar el último registro. |
+
 ## Funcionalidades
 
 ### Nivel 1 — Datos
