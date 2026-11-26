@@ -2,7 +2,7 @@
 
 **Negocio:** Lavadero de carros  
 **Proyecto:** Motor de datos en JavaScript  
-**Clan:** Ubuntu
+**Clan:** Ubuntu  
 **Celúla:** Poseidón
 
 ## Descripción
