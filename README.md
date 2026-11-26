@@ -1,8 +1,9 @@
-# El Motor del Barrio — Poseidon
+# El Motor del Barrio — Poseidón
 
 **Negocio:** Lavadero de carros  
 **Proyecto:** Motor de datos en JavaScript  
-**Clan:** RIWI
+**Clan:** Ubuntu
+**Celúla:** Poseidón
 
 ## Descripción
 
